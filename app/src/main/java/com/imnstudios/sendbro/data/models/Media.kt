@@ -5,5 +5,4 @@ import java.io.Serializable
 
 data class Media(
     val uri: String? = null,
-    val bla: String? = null
 ) : Serializable

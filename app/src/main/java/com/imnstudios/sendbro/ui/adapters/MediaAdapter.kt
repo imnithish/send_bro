@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.imnstudios.sendbro.data.models.Media
 import com.imnstudios.sendbro.databinding.MediaPreviewBinding
-import com.imnstudios.sendbro.util.logger
-import kotlinx.android.synthetic.main.media_preview.view.*
 
 class MediaAdapter : RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
 
@@ -18,11 +16,8 @@ class MediaAdapter : RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(media: Media) {
-            "binding".logger()
             binding.apply {
                 Glide.with(context).load(media.uri).into(preview)
-                blaEx.text = media.bla
-
             }
         }
     }
@@ -44,7 +39,6 @@ class MediaAdapter : RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         return ViewHolder(
             parent.context,
             MediaPreviewBinding.inflate(
@@ -57,12 +51,9 @@ class MediaAdapter : RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val media = differ.currentList[position]
-//        holder.bind(media)
-        holder.itemView.apply {
-            Glide.with(this).load(media.uri).into(preview)
-            bla_ex.text = media.bla
-            setOnItemClickListener {
-                "setOnItemClickListener".logger()
+        holder.apply {
+            bind(media)
+            itemView.setOnClickListener {
                 onItemClickListener?.let { it(media) }
             }
         }

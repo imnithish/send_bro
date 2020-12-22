@@ -5,10 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.ImagesFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.imnstudios.sendbro.AutoFitGridRecyclerView
         android:id="@+id/image_gallery"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:numColumns="auto_fit"
+        android:columnWidth="180dp"/>
 
 
 </FrameLayout>
