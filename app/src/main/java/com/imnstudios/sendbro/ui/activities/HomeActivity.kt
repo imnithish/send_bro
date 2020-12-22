@@ -16,28 +16,37 @@ class HomeActivity : AppCompatActivity() {
 
     companion object {
         val fragmentTitles =
-            listOf(applicationContext().getString(R.string.images), applicationContext().getString(R.string.videos))
+            listOf(
+                applicationContext().getString(R.string.images),
+                applicationContext().getString(R.string.videos)
+            )
         val fragmentIcons =
             listOf(
                 ContextCompat.getDrawable(
                     applicationContext(),
                     R.drawable.ic_baseline_image_24
                 ),
-                ContextCompat.getDrawable(applicationContext(), R.drawable.ic_baseline_video_library_24)
+                ContextCompat.getDrawable(
+                    applicationContext(),
+                    R.drawable.ic_baseline_video_library_24
+                )
             )
     }
 
-    private lateinit var binding: ActivityHomeBinding
+    private var _binding: ActivityHomeBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+        _binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setUpViewPager()
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     private fun setUpViewPager() {
@@ -47,25 +56,26 @@ class HomeActivity : AppCompatActivity() {
                 this, binding.pager
             ) { tab: TabLayout.Tab, position: Int ->
                 tab.icon = fragmentIcons[position]
+                tab.text = fragmentTitles[position]
             }.attach()
 
-            binding.toolbarTitle.text = fragmentTitles[0]
-            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                override fun onTabSelected(tab: TabLayout.Tab?) {
-                    binding.toolbarTitle.text = when (tab?.position) {
-                        0 -> fragmentTitles[0]
-                        1 -> fragmentTitles[1]
-                        else -> fragmentTitles[0]
-                    }
-                }
-
-                override fun onTabUnselected(tab: TabLayout.Tab?) {/*NO-OP*/
-                }
-
-                override fun onTabReselected(tab: TabLayout.Tab?) {/*NO-OP*/
-                }
-
-            })
+//            binding.toolbarTitle.text = fragmentTitles[0]
+//            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+//                override fun onTabSelected(tab: TabLayout.Tab?) {
+//                    binding.toolbarTitle.text = when (tab?.position) {
+//                        0 -> fragmentTitles[0]
+//                        1 -> fragmentTitles[1]
+//                        else -> fragmentTitles[0]
+//                    }
+//                }
+//
+//                override fun onTabUnselected(tab: TabLayout.Tab?) {/*NO-OP*/
+//                }
+//
+//                override fun onTabReselected(tab: TabLayout.Tab?) {/*NO-OP*/
+//                }
+//
+//            })
         }
         "Setting up ViewPager: success".logger()
     }

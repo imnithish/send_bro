@@ -4,9 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.ImagesFragment">
-    <TextView
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/image_gallery"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="images" />
+        android:layout_height="match_parent"/>
+
 
 </FrameLayout>

@@ -10,21 +10,23 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorOnPrimary">
+            android:background="?attr/colorOnPrimary"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
-                tools:text="Hello World" />
+                android:textSize="17sp" />
         </com.google.android.material.appbar.MaterialToolbar>
 
         <com.google.android.material.tabs.TabLayout
@@ -32,8 +34,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabGravity="fill"
+            app:tabInlineLabel="true"
             app:tabMode="fixed"
-            app:tabRippleColor="@color/white" />
+            app:tabRippleColor="@color/white"
+            app:tabTextAppearance="@style/TabTextStyle" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
